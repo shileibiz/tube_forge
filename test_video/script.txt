@@ -1,0 +1,59 @@
+I Built an AI That Automates My Content Research — Saved 15 Hours/Week
+
+[HOOK - 0:00-0:15]
+I was spending twenty hours a week just researching content for my newsletter. So I built an AI agent that does it for me in twenty minutes. Here's exactly how I did it, the tools I used, and the numbers you actually care about.
+
+[INTRO - 0:15-0:45]
+Hey, I'm Mark. I build AI tools and share the real numbers — not the hype. If you're a builder, developer, or solopreneur trying to cut through the noise, stick around.
+
+Three months ago, I was manually reading through dozens of articles, Twitter threads, and GitHub repos every week just to find interesting content for my audience. It was taking fifteen to twenty hours. Some weeks I just skipped it because I didn't have the energy. That's when I realized: I'm a builder. I should build a tool for this.
+
+[BULD SECTION - 0:45-1:45]
+Here's the stack I used — every single tool is free or has a generous free tier.
+
+First, RSS feeds and web scrapers to pull raw content. I used a Python script with Feedparser and Requests — zero cost. Every morning, it pulls the latest from thirty RSS feeds across tech, AI, and startup news.
+
+Second, an LLM layer to summarize and rank. I used Claude's API for the heavy lifting — the prompt is simple: "Read this article, summarize in two sentences, and rate its relevance to builders on a scale of one to ten." Cost? About three cents per hundred articles.
+
+Third, a local vector database to track what I've already covered. ChromaDB is free and runs on my laptop. No duplicate content, no rehashing old topics.
+
+Fourth, a simple newsletter generator that formats everything into a clean HTML template. I used Jinja2 — again, free and Python-native.
+
+[TECHNICAL DEEP DIVE - 1:45-2:45]
+Let me show you the actual architecture. The pipeline runs on a cron job every morning at 6 AM. A Python script fetches content, sends it through the LLM for analysis, stores embeddings in ChromaDB, and outputs a Markdown file with the top ten pieces of content ranked by relevance.
+
+The trick is the ranking system. I don't just use the LLM scores. I cross-reference with engagement data — tweets that got saved, articles that trended on Hacker News, GitHub repos that gained stars overnight. Each signal is weighted. The final score is a weighted average.
+
+Here's the real magic: I fine-tuned the scoring weights over eight weeks. Initially, the LLM score was weighted at sixty percent. After testing, I found that Hacker News engagement was a better predictor of what my audience actually cared about. Now the weights are: forty percent HN points, thirty percent LLM relevance, twenty percent GitHub stars, ten percent Twitter saves.
+
+[NUMBERS SECTION - 2:45-3:30]
+Let's talk numbers. Before the AI agent, I was spending eighteen to twenty-two hours per week on content research. Now? Twenty minutes a day, Monday through Friday. That's one hour and forty minutes total per week.
+
+The savings: sixteen to eighteen hours per week. That's two full working days. I reinvested that time into actually writing better content and engaging with my audience.
+
+Cost breakdown: The RSS scraper costs zero. The LLM API calls cost about four dollars per month at current volume. ChromaDB is free. Total monthly cost: four dollars. Total time saved: over seventy hours per month.
+
+The ROI math is ridiculous. Four dollars for seventy hours? That's six cents per hour saved.
+
+[LEARNINGS - 3:30-4:15]
+Three things I learned that might save you months of trial and error.
+
+One: Don't over-engineer the first version. My first prototype was forty lines of Python. It worked. I spent weeks trying to make it perfect before I realized perfect doesn't need to exist, it needs to ship.
+
+Two: Raw data quality matters more than model quality. I was chasing better summarization models, but the real bottleneck was bad RSS feeds with incomplete content. Cleaning the data pipeline gave me a fifty percent improvement in output quality.
+
+Three: The scoring system needs real-world validation. Your model's opinion on what's relevant doesn't matter. What matters is what your audience actually engages with. Use real metrics, not vibes.
+
+[CONCLUSION - 4:15-5:00]
+So that's the system. An AI research agent that saves me fifteen hours a week, costs four dollars a month, and runs on my laptop.
+
+If you want to build your own, I open-sourced the core pipeline on GitHub — link in the description. It's about two hundred lines of Python. You can customize the RSS feeds, the LLM provider, and the scoring weights.
+
+I'm documenting the entire journey on this channel. Next week, I'm building a version that also drafts the first pass of the newsletter. If that sounds interesting, hit subscribe.
+
+What repetitive task would you automate first? Drop it in the comments. I might build it next.
+
+Thanks for watching, and keep building.
+
+[END CARD - 5:00-5:10]
+Build Metrics — real numbers, real builds, no fluff.
